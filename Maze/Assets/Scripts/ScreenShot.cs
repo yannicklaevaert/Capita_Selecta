@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HiResScreenShots : MonoBehaviour {
+public class ScreenShot : MonoBehaviour {
 	public int resWidth = 2550; 
 	public int resHeight = 3300;
 
@@ -21,6 +21,7 @@ public class HiResScreenShots : MonoBehaviour {
 	void LateUpdate() {
 		takeHiResShot |= Input.GetKeyDown("k");
 		if (takeHiResShot) {
+			Camera camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ();
 			RenderTexture rt = new RenderTexture(resWidth, resHeight, 24);
 			camera.targetTexture = rt;
 			Texture2D screenShot = new Texture2D(resWidth, resHeight, TextureFormat.RGB24, false);
