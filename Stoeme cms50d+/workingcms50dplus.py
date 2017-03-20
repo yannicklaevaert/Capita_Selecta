@@ -2,6 +2,7 @@
 import sys, serial, os, csv
 from dateutil import parser as dateparser
 import time
+import numpy
 
 class Package(object):
     def __init__(self, package):
@@ -146,20 +147,28 @@ class CMS50Dplus(object):
 
 
     def getLiveData(self):
+        myfile = open("foo.csv", 'wb')
+        wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
         #connect
         self.connect()
-        print "foo"
         package = self.read_package()
         print "package" , package
         while self.check_package(package):
             package =  self.read_package()
-            self.parse_raw_package(package)
+            data = self.parse_raw_package(package)
+            self.write_data(data, wr)
 
     def parse_raw_package(self, package):
         data = [0] * 9
         for i in range(1, 9):
             data[i] = package[i] - 128
         print data
+        return data
+
+    def write_data(self, data, wr):
+        heartbeat = data[5]
+        wr.writerow([heartbeat])
+
 
 if __name__ == "__main__":
     filename = "liveData.csv"
