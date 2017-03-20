@@ -155,6 +155,7 @@ class CMS50Dplus(object):
         i = 0
         print "write init package"
         self.init_handshake()
+        serial.Serial.flush(self.conn)
         for i in range(0, 10):
             print i
             self.second_handshake(i)
@@ -184,12 +185,16 @@ class CMS50Dplus(object):
         return package
 
     def second_handshake(self, i):
-        second_list =   [167,   162,    160,    176,    172,    179,    168,    170,    169,    161]
-        size_list =     [40 , 8,   2,      2,      4,      8,      3,      18,     18,     9,      9]
+        second_list =   [167,   162,    160,    176,    172,    179,    168,    170,    169,    161,    161]
+        size_list =     [48 ,   2,      2,      4,      8,      3,      17,     18,     9,      9]
         size = size_list[i]
         n = second_list[i]
+        print "reading"
         print self.read_init_package(size)
-        self.conn.write(bytearray(self.make_write_package(n)))
+        print "writing"
+        write_package = bytearray(self.make_write_package(n))
+        print self.make_write_package(n)
+        self.conn.write(write_package)
 
     def polling_data(self):
         self.conn.write(bytearray(self.make_write_package(175)))
@@ -209,6 +214,9 @@ class CMS50Dplus(object):
             self.conn.setDTR(1)
             self.handshake()
             print "done connecting"
+            while True:
+                print self.getByte()
+
 
         elif not self.isConnected():
             self.conn.open()
