@@ -2,13 +2,13 @@
 using System.Collections;
 
 public class ScreenShot : MonoBehaviour {
-	public int resWidth = 2550; 
+	public int resWidth = 3300; 
 	public int resHeight = 3300;
 
 	private bool takeHiResShot = false;
 
 	public static string ScreenShotName(int width, int height) {
-		return string.Format("{0}/screenshots/screen_{1}x{2}_{3}.png", 
+		return string.Format("{0}/screenshots/screen_{1}x{2}_{3}.jpg", 
 			Application.dataPath, 
 			width, height, 
 			System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
