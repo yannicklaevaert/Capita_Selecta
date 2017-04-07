@@ -43,13 +43,17 @@ public class Player : MonoBehaviour {
 			Move(currentDirection);
 		}
 		else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
-			Move(currentDirection.GetNextClockwise());
+			// Move(currentDirection.GetNextClockwise());
+			Rotate(currentDirection.GetNextClockwise());
 		}
 		else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) {
-			Move(currentDirection.GetOpposite());
+			// Move(currentDirection.GetOpposite());
+			Rotate(currentDirection.GetNextCounterclockwise());
+			Rotate(currentDirection.GetNextCounterclockwise());
 		}
 		else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
-			Move(currentDirection.GetNextCounterclockwise());
+			// Move(currentDirection.GetNextCounterclockwise());
+			Rotate(currentDirection.GetNextCounterclockwise());
 		}
 		else if (Input.GetKeyDown(KeyCode.Q)) {
 			Rotate(currentDirection.GetNextCounterclockwise());
