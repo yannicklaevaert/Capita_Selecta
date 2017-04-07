@@ -118,6 +118,12 @@ public class Maze : MonoBehaviour {
 		}
 	}
 
+	public IntVector2 StartCoordinates{
+		get {
+			return new IntVector2(size.x/2, size.z/2);
+		}
+	}
+
 	public IntVector2 CreateExit() {
 		//Kies tussen horizontaal (0) of verticaal (1)
 		int random_edge = Random.Range(0,2);
@@ -128,13 +134,13 @@ public class Maze : MonoBehaviour {
 
 		if (random_edge == 0){
 			if (random_place == 0){
-				//Bovenste rij
+				//Onderste rij
 				coordinates =  new IntVector2(Random.Range(0, size.x), 0);
 				direction = MazeDirection.South;
 			}
 			else{
-				//Onderste rij
-				coordinates =  new IntVector2(Random.Range(0, size.x), size.z - 1);
+				//Bovenste rij
+				coordinates =  new IntVector2(Random.Range(0, size.x), size.z-1);
 				direction = MazeDirection.North;
 			}
 		}
@@ -145,18 +151,17 @@ public class Maze : MonoBehaviour {
 				direction = MazeDirection.West;
 			}
 			else{
+				//Rechter kolom
 				coordinates =  new IntVector2(size.x - 1, Random.Range(0, size.z));
 				direction = MazeDirection.East;
 			}
 		}
 		//Get cell at this coordinates
 		MazeCell currentCell = cells[coordinates.x, coordinates.z];
-		//Calculate coordinates of neighbor
-		IntVector2 neighbor_coordinates = currentCell.coordinates + direction.ToIntVector2();
 		print("x-as op de onderkant van de kaart, z-as is de linkerkant");
 		print("Uitgang op: " + coordinates.x +","+ coordinates.z);
 		CreateExitPassage(currentCell, direction);
-		return neighbor_coordinates;
+		return coordinates;
 	}
 
 	public bool ContainsCoordinates (IntVector2 coordinate) {

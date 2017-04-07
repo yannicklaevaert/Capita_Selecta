@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour {
 		mazeInstance = Instantiate (mazePrefab) as Maze;
 		yield return StartCoroutine(mazeInstance.Generate());
 		playerInstance = Instantiate(playerPrefab) as Player;
-		playerInstance.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
+		playerInstance.SetLocation(mazeInstance.GetCell(mazeInstance.StartCoordinates));
 		Camera.main.clearFlags = CameraClearFlags.Depth;
 		Camera.main.rect = new Rect(0f, 0f, 0.5f, 0.5f);
 	}
