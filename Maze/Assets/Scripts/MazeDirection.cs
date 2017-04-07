@@ -26,6 +26,10 @@ public static class MazeDirections {
 		new IntVector2(-1, 0)
 	};
 
+	public static MazeDirection getRandomDirection(){
+		return (MazeDirection)Random.Range(0, Count);
+	}
+
 	public static IntVector2 ToIntVector2 (this MazeDirection direction) {
 		return vectors[(int)direction];
 	}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Maze : MonoBehaviour {
 
 	public IntVector2 size;
@@ -14,6 +15,7 @@ public class Maze : MonoBehaviour {
 	private MazeCell[,] cells;
 	private List<MazeRoom> rooms = new List<MazeRoom> ();
 	public float generationStepDelay;
+	
 
 
 
@@ -30,6 +32,7 @@ public class Maze : MonoBehaviour {
 			yield return delay;
 			DoNextGenerationStep(activeCells);
 		}
+		CreateExit();
 	}
 
 	private void DoFirstGenerationStep (List<MazeCell> activeCells) {
@@ -89,6 +92,17 @@ public class Maze : MonoBehaviour {
 		passage.Initialize(otherCell, cell, direction.GetOpposite());
 	}
 
+
+
+	private void CreateExitPassage(MazeCell cell, MazeDirection direction){
+		//Maak passage
+		MazePassage passage = Instantiate(passagePrefab) as MazePassage;
+		//Maak passage in huidige cell
+		passage.Initialize(cell, null, direction);
+
+	}
+
+
 	private void CreateWall (MazeCell cell, MazeCell otherCell, MazeDirection direction) {
 		MazeWall wall = Instantiate(wallPrefabs[Random.Range(0, wallPrefabs.Length)]) as MazeWall;
 		wall.Initialize(cell, otherCell, direction);
@@ -102,6 +116,49 @@ public class Maze : MonoBehaviour {
 		get {
 			return new IntVector2(Random.Range(0, size.x), Random.Range(0, size.z));
 		}
+	}
+
+	public IntVector2 CreateExit() {
+		//Kies tussen horizontaal (0) of verticaal (1)
+		int random_edge = Random.Range(0,2);
+		//Kies boven-onder of links-rechts
+		int random_place = Random.Range(0,2);
+		IntVector2 coordinates =  new IntVector2(Random.Range(0, size.x), 0);
+		MazeDirection direction = MazeDirection.North;
+
+		if (random_edge == 0){
+			if (random_place == 0){
+				//Bovenste rij
+				coordinates =  new IntVector2(Random.Range(0, size.x), 0);
+				direction = MazeDirection.South;
+			}
+			else{
+				//Onderste rij
+				coordinates =  new IntVector2(Random.Range(0, size.x), size.z - 1);
+				direction = MazeDirection.North;
+			}
+		}
+		else{
+			if (random_place == 0){
+				//linker kolom
+				coordinates =  new IntVector2(0, Random.Range(0, size.z));
+				direction = MazeDirection.West;
+			}
+			else{
+				coordinates =  new IntVector2(size.x - 1, Random.Range(0, size.z));
+				direction = MazeDirection.East;
+			}
+		}
+		//Get cell at this coordinates
+		MazeCell currentCell = cells[coordinates.x, coordinates.z];
+		//Calculate coordinates of neighbor
+		IntVector2 neighbor_coordinates = currentCell.coordinates + direction.ToIntVector2();
+		print("x" + coordinates.x);
+		print("y" + coordinates.z);
+		print("new x" +neighbor_coordinates.x);
+		print("new y" +neighbor_coordinates.z);
+		CreateExitPassage(currentCell, direction);
+		return neighbor_coordinates;
 	}
 
 	public bool ContainsCoordinates (IntVector2 coordinate) {
