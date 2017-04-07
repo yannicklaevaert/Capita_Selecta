@@ -153,10 +153,8 @@ public class Maze : MonoBehaviour {
 		MazeCell currentCell = cells[coordinates.x, coordinates.z];
 		//Calculate coordinates of neighbor
 		IntVector2 neighbor_coordinates = currentCell.coordinates + direction.ToIntVector2();
-		print("x" + coordinates.x);
-		print("y" + coordinates.z);
-		print("new x" +neighbor_coordinates.x);
-		print("new y" +neighbor_coordinates.z);
+		print("x-as op de onderkant van de kaart, z-as is de linkerkant");
+		print("Uitgang op: " + coordinates.x +","+ coordinates.z);
 		CreateExitPassage(currentCell, direction);
 		return neighbor_coordinates;
 	}

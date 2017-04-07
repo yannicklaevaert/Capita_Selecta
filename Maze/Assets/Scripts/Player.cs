@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class Player : MonoBehaviour {
 
@@ -20,7 +21,15 @@ public class Player : MonoBehaviour {
 	private void Move (MazeDirection direction) {
 		MazeCellEdge edge = currentCell.GetEdge(direction);
 		if (edge is MazePassage) {
-			SetLocation(edge.otherCell);
+			MazeCell c = edge.otherCell ;
+			if (c){
+				SetLocation(edge.otherCell);
+			}
+			else{
+				print("exit");
+				EditorUtility.DisplayDialog ("Victory", "Je bent gewonnen!", "Next Level", "Quit");
+			}
+			
 		}
 	}
 
