@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEditor;
 
 public class Player : MonoBehaviour {
@@ -23,6 +24,13 @@ public class Player : MonoBehaviour {
 		if (edge is MazePassage) {
 			MazeCell c = edge.otherCell ;
 			if (c){
+				if (c.GetEdge(direction) is MazeDoor){
+				Debug.Log("enter");
+				Debug.Log("check");
+				var editorAsm = typeof(Editor).Assembly;
+ 				var inspWndType = editorAsm.GetType("UnityEditor.InspectorWindow");
+				 var window = EditorWindow.GetWindow<EditorGUILayoutIntField>();
+			}
 				SetLocation(edge.otherCell);
 			}
 			else{
