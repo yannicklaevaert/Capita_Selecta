@@ -11,10 +11,12 @@ public class MazeDoorCode : MonoBehaviour {
 	public bool onTrigger;
 	public bool doorOpen;
 	public bool keypadScreen;
+	public Collider other;
 	public Transform hinge;
 
 
 	void OnTriggerEnter (Collider other) {
+		this.other = other;
 		onTrigger = true;
 		/*if (other.gameObject.tag == "Player") {
 			OpenDoor (other);
@@ -25,12 +27,13 @@ public class MazeDoorCode : MonoBehaviour {
 		/*if (other.gameObject.tag == "Player") {
 			hinge.localRotation = Quaternion.identity;
 		}*/
+		this.other = other;
 		onTrigger = false;
 		keypadScreen = false;
 		input = "";
 	}
 
-	protected void OpenDoor(Collider other) {
+	protected void OpenDoor() {
 		if (this.transform.rotation == Quaternion.identity) {
 			if (other.gameObject.transform.position.z > this.transform.position.z + 0.5) {
 				hinge.localRotation = Quaternion.Euler (0f, 90f, 0f);
@@ -70,8 +73,9 @@ public class MazeDoorCode : MonoBehaviour {
 
 		if(doorOpen)
 		{
-			var newRot = Quaternion.RotateTowards(hinge.rotation, Quaternion.Euler(0.0f, -90.0f, 0.0f), Time.deltaTime * 250);
-			hinge.rotation = newRot;
+			/*var newRot = Quaternion.RotateTowards(hinge.rotation, Quaternion.Euler(0.0f, -90.0f, 0.0f), Time.deltaTime * 250);
+			hinge.rotation = newRot;*/
+			OpenDoor();
 		}
 	}
 
