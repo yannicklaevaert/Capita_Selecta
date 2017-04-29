@@ -15,7 +15,7 @@ public class Maze : MonoBehaviour {
 	private MazeCell[,] cells;
 	private List<MazeRoom> rooms = new List<MazeRoom> ();
 	public float generationStepDelay;
-	
+
 
 
 
