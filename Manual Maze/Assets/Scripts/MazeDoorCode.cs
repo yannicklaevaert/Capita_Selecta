@@ -66,13 +66,11 @@ public class MazeDoorCode : MonoBehaviour {
 	}
 
 	void Update() {
-		if(input == curPassword)
-		{
+		if(input == curPassword){
 			doorOpen = true;
 		}
 
-		if(doorOpen)
-		{
+		if(doorOpen){
 			/*var newRot = Quaternion.RotateTowards(hinge.rotation, Quaternion.Euler(0.0f, -90.0f, 0.0f), Time.deltaTime * 250);
 			hinge.rotation = newRot;*/
 			OpenDoor();
@@ -84,73 +82,62 @@ public class MazeDoorCode : MonoBehaviour {
 		{
 			if(onTrigger)
 			{
-				GUI.Box(new Rect(0, 0, 200, 25), "Press 'E' to open keypad");
+				
+				//GUI.Box(new Rect(0, 0, 220, 330), "");
+				GUI.Box(new Rect(100, 100, 200, 25), "Enter code to open door:");
+				GUI.Box(new Rect(100, 125, 200, 25), input);
 
-				if(Input.GetKeyDown(KeyCode.E))
-				{
-					keypadScreen = true;
-					onTrigger = false;
-				}
-			}
-
-			if(keypadScreen)
-			{
-				GUI.Box(new Rect(0, 0, 220, 330), "");
-				GUI.Box(new Rect(5, 5, 210, 25), input);
-
-				if(GUI.Button(new Rect(5, 35, 60, 60), "1"))
-				{
+				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Keypad1.ToString()))){
 					input = input + "1";
 				}
 
-				if(GUI.Button(new Rect(80, 35, 60, 60), "2"))
-				{
+				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Keypad2.ToString()))){
 					input = input + "2";
 				}
 
-				if(GUI.Button(new Rect(155, 35, 60, 60), "3"))
+				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Keypad3.ToString())))
 				{
 					input = input + "3";
 				}
 
-				if(GUI.Button(new Rect(5, 110, 60, 60), "4"))
+				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Keypad4.ToString())))
 				{
 					input = input + "4";
 				}
 
-				if(GUI.Button(new Rect(80, 110, 60, 60), "5"))
+				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Keypad5.ToString())))
 				{
 					input = input + "5";
 				}
 
-				if(GUI.Button(new Rect(155, 110, 60, 60), "6"))
+				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Keypad6.ToString())))
 				{
 					input = input + "6";
 				}
 
-				if(GUI.Button(new Rect(5, 185, 60, 60), "7"))
+				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Keypad7.ToString())))
 				{
 					input = input + "7";
 				}
 
-				if(GUI.Button(new Rect(80, 185, 60, 60), "8"))
+				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Keypad8.ToString())))
 				{
 					input = input + "8";
 				}
 
-				if(GUI.Button(new Rect(155, 185, 60, 60), "9"))
+				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Keypad9.ToString())))
 				{
 					input = input + "9";
 				}
 
-				if(GUI.Button(new Rect(5, 260, 60, 60), "0"))
+				if(Input.GetKeyDown(KeyCode.Keypad0))
 				{
 					input = input + "0";
 				}
 
-				if(GUI.Button(new Rect(155, 260, 60, 60), "Clear"))
+				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Backspace.ToString())))
 				{
-					input = "";
+					input = input.Substring(0, input.Length - 1);
 				}
 			}
 		}
