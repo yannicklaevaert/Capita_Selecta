@@ -157,7 +157,7 @@ public class MazeDoorCode : MonoBehaviour {
 					input = input.Substring(0, input.Length - 1);
 				}
 			}
-			if (input.Length == 4){
+			if (input.Length == 6){
 				if(input == curPassword){
 					doorOpen = true;
 				} else {
