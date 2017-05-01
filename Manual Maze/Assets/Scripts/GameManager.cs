@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		time = 20.0f;
+		time = 200.0f;
 		alive = true;
 		UpdateUI();
 		Update();
@@ -43,5 +43,6 @@ public class GameManager : MonoBehaviour {
 
 	public void GameOver() {
 		timeLeft.text = "Game Over";
+		Time.timeScale = 0f;
 	}
 }
