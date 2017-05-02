@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour {
 
 	public bool alive;
 
+	public static bool enemyCollision = false;
+
 
 	// Use this for initialization
 	void Start () {
@@ -26,7 +28,7 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 		Debug.Log(time);
 		time -= Time.deltaTime;
-	    if(time < 0){
+	    if((time < 0) || enemyCollision){
 	        alive = false;
 	        GameOver();
 	    }

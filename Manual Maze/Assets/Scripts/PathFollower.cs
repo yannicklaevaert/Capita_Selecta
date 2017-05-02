@@ -38,4 +38,18 @@ public class PathFollower : MonoBehaviour {
 			}
 		}
 	}
+
+	void OnTriggerEnter (Collider other) {
+		GameManager.enemyCollision = true;
+	}
+
+	/*void OnTriggerExit (Collider other) {
+		/*if (other.gameObject.tag == "Player") {
+			hinge.localRotation = Quaternion.identity;
+		}*/
+		/*this.other = other;
+		onTrigger = false;
+		input = "";
+		doorClosed = true;
+	}*/
 }
