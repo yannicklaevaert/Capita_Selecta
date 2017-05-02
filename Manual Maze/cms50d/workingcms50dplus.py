@@ -147,8 +147,7 @@ class CMS50Dplus(object):
 
 
     def getLiveData(self):
-        myfile = open("foo.csv", 'wb')
-        wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
+        myfile = "foo.txt"
         #connect
         self.connect()
         package = self.read_package()
@@ -159,7 +158,7 @@ class CMS50Dplus(object):
             data = self.parse_raw_package(package)
             heartbeat = data[5]
             if heartbeat != heartbeat_old:
-            	self.write_data(data, wr)
+            	self.write_data(data, myfile)
             	heartbeat_old = heartbeat
 
     def parse_raw_package(self, package):
@@ -169,9 +168,11 @@ class CMS50Dplus(object):
         print data
         return data
 
-    def write_data(self, data, wr):
+    def write_data(self, data, filename):
         heartbeat = data[5]
-        wr.writerow([heartbeat])
+        f = open(filename, 'w')
+        f.write(str(heartbeat)) 
+
 
 
 if __name__ == "__main__":
