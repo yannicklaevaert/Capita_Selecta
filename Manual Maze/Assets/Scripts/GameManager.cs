@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using System.IO;
+using System;
 
 public class GameManager : MonoBehaviour {
 
@@ -21,20 +23,34 @@ public class GameManager : MonoBehaviour {
 		UpdateUI();
 		Update();
 	}
-	
+
+	int ReadLine()
+	{
+		string filename = "cms50d/foo.txt";
+		FileInfo theSourceFile = new FileInfo (filename);
+    StreamReader reader = theSourceFile.OpenText();
+		string input = reader.ReadLine();
+		reader.Close();
+		int last = int.Parse(input);
+		return last;
+  }
+
+
 	// Update is called once per frame
 	void Update () {
-		Debug.Log(time);
-		time -= Time.deltaTime;
+		int intLast = ReadLine();
+		float last = (float)intLast;
+		float factor = last/60;
+		time -= factor * Time.deltaTime;
 	    if(time < 0){
 	        alive = false;
 	        GameOver();
 	    }
 	    else{
-	    	UpdateUI();	
+	    	UpdateUI();
 	    }
 
-	    
+
 	}
 
 	public void UpdateUI() {
