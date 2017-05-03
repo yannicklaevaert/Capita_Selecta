@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MazeDoorCode : MonoBehaviour {
 
-	public string curPassword = "12345";
+	public string curPassword = "1234";
 	public string input;
 	public bool onTrigger;
 	public bool doorOpen;
