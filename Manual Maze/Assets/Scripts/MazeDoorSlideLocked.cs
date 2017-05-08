@@ -4,14 +4,13 @@ using System.Collections;
 public class MazeDoorSlideLocked : MonoBehaviour {
 
 	Animator animator;
-	bool doorOpen;
 	public string curPassword = "123456";
 	public static string neededColor = "green";
 	public static string neededType = "A";
 	public string input;
 	bool onTrigger;
 	bool doorLocked;
-	bool doorClosed;
+	bool doorOpen;
 	Collider other;
 	public string message = "Authorized personnel only.";
 	public string key = "You need a " + neededColor + " key of type " + neededType;
@@ -25,8 +24,10 @@ public class MazeDoorSlideLocked : MonoBehaviour {
 	void OnTriggerEnter (Collider other) {
 		this.other = other;
 		onTrigger = true;
-		doorClosed = false;
-		doorOpen = true;
+		if (!doorLocked){
+			Debug.Log("open door");
+			doorOpen = true;
+		}		
 	}
 
 	void OnTriggerExit (Collider other) {
@@ -36,8 +37,12 @@ public class MazeDoorSlideLocked : MonoBehaviour {
 		this.other = other;
 		onTrigger = false;
 		input = "";
-		doorClosed = true;
 		doorOpen = false;
+		// if (other.gameObject.tag == "Player") {
+		// 		DoorControl ("Close");		
+		// }
+		
+		
 	}
 
 
@@ -48,21 +53,20 @@ public class MazeDoorSlideLocked : MonoBehaviour {
 
 
 	void Update() {
-//		/*if(input == curPassword){
-//			doorOpen = true;
-//		}*/
-
 		if(!doorLocked && doorOpen){
+			Debug.Log("update open");
 			DoorControl ("Open");
-			
+		}
+		else{
+			Debug.Log("update close");
+			DoorControl("Close");
 		}
 
-		if (doorClosed){
-			if (other.gameObject.tag == "Player") {
-				doorClosed = false;
-				DoorControl ("Close");
-			}
-		}
+		// if (!doorOpen){
+		// 	if (other.gameObject.tag == "Player") {
+		// 		DoorControl ("Close");
+		// 	}
+		// }
 	}
 
 	void OnGUI() 	{
