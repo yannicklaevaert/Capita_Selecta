@@ -6,15 +6,15 @@ public class MazeDoorSlideLocked : MonoBehaviour {
 	Animator animator;
 	bool doorOpen;
 	public string curPassword = "123456";
-	public static string neededColor = "Green";
+	public static string neededColor = "green";
 	public static string neededType = "A";
 	public string input;
 	bool onTrigger;
 	bool doorLocked;
 	bool doorClosed;
 	Collider other;
-	public string message = 
-		"Authorized personnel only. You need a " + neededType + " key of type " + neededType ;
+	public string message = "Authorized personnel only.";
+	public string key = "You need a " + neededColor + " key of type " + neededType;
 
 	void Start()
 	{
@@ -75,6 +75,7 @@ public class MazeDoorSlideLocked : MonoBehaviour {
 				GUI.Box(new Rect(100, 100, 200, 25), message);
 				GUI.Box(new Rect(100, 125, 200, 25), "Enter code to open door:");
 				GUI.Box(new Rect(100, 150, 200, 25), input);
+				GUI.Box(new Rect(100, 175, 200, 25), key);
 
 				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Keypad1.ToString()))){
 					message = "Authorized personnel only. You need a " + neededType + " key of type " + neededType ;
