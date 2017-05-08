@@ -73,10 +73,10 @@ public class MazeDoorSlideLocked : MonoBehaviour {
 
 				//GUI.Box(new Rect(0, 0, 220, 330), "");
 				GUI.Box(new Rect(100, 100, 200, 25), message);
-				GUI.Box(new Rect(100, 125, 200, 25), "Enter code to open door:");
-				GUI.Box(new Rect(100, 150, 200, 25), input);
-				GUI.Box(new Rect(100, 175, 200, 25), key);
-
+				GUI.Box(new Rect(100, 125, 200, 25), key);
+				GUI.Box(new Rect(100, 150, 200, 25), "Enter code to open door:");
+				GUI.Box(new Rect(100, 175, 200, 25), input);
+				
 				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Keypad1.ToString()))){
 					message = "Authorized personnel only. You need a " + neededType + " key of type " + neededType ;
 					input = input + "1";
