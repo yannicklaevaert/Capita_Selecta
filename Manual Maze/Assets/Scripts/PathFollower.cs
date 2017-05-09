@@ -18,6 +18,7 @@ public class PathFollower : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//Investigate();
+		Lasers.rotating = false;
 		Vector3 dir = path[currentPoint].position - transform.position;
 
 		transform.position += dir * Time.deltaTime * speed;	
@@ -25,6 +26,7 @@ public class PathFollower : MonoBehaviour {
 		rot = Quaternion.LookRotation(dir);
    		// Slerp to it over time:
    		transform.rotation = Quaternion.Slerp(transform.rotation, rot, turnSpeed * Time.deltaTime);	
+   		Lasers.rotating = true;
 
 		if (dir.magnitude <= reachDist){
 			currentPoint++;
