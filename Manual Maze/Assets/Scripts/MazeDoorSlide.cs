@@ -5,6 +5,7 @@ public class MazeDoorSlide : MonoBehaviour {
 
 	Animator animator;
 	bool doorOpen;
+	public AudioClip slide;
 
 	void Start()
 	{
@@ -17,7 +18,7 @@ public class MazeDoorSlide : MonoBehaviour {
 		if(col.gameObject.tag == "Player")
 		{
 			doorOpen = true;
-			DoorControl ("Open");
+			AudioSource.PlayClipAtPoint(slide, transform.position);
 		}
 	}
 		
@@ -27,7 +28,7 @@ public class MazeDoorSlide : MonoBehaviour {
 		if(doorOpen)
 		{
 			doorOpen = false;
-			DoorControl ("Close");
+			
 		}
 	}
 
