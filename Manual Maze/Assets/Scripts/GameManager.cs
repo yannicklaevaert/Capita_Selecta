@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour {
 	public int heartBeat;
 
 
+
 	// Use this for initialization
 	void Start () {
 		time = 200.0f;
@@ -32,7 +33,7 @@ public class GameManager : MonoBehaviour {
 	{
 		string filename = "cms50d/foo.txt";
 		FileInfo theSourceFile = new FileInfo (filename);
-    StreamReader reader = theSourceFile.OpenText();
+    	StreamReader reader = theSourceFile.OpenText();
 		string input = reader.ReadLine();
 		reader.Close();
 		int last = int.Parse(input);
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
 		int intLast = ReadLine();
 		if (intLast > heartBeat){
 			time -= 10;
