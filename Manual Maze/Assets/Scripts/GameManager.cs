@@ -9,11 +9,15 @@ public class GameManager : MonoBehaviour {
 
 	public Text timeLeft;
 
+	public Text beatsPerMinute;
+
 	public float time;
 
 	public GameObject escape;
 
 	public bool alive;
+
+	public int heartBeat;
 
 
 	// Use this for initialization
@@ -39,6 +43,10 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		int intLast = ReadLine();
+		if (intLast > heartBeat){
+			time -= 10;
+		}
+		heartBeat = intLast;
 		float last = (float)intLast;
 		float factor = last/60;
 		time -= factor * Time.deltaTime;
@@ -55,6 +63,7 @@ public class GameManager : MonoBehaviour {
 
 	public void UpdateUI() {
 		timeLeft.text = "Time: " + Mathf.Round(time);
+		beatsPerMinute.text = "BPM: " + heartBeat;
 	}
 
 	public void GameOver() {
