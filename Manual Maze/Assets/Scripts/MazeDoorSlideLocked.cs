@@ -28,6 +28,7 @@ public class MazeDoorSlideLocked : MonoBehaviour {
 		if (!doorLocked){
 			Debug.Log("open door");
 			doorOpen = true;
+			DoorControl ("Open");
 		}		
 	}
 
@@ -39,6 +40,7 @@ public class MazeDoorSlideLocked : MonoBehaviour {
 		onTrigger = false;
 		input = "";
 		doorOpen = false;
+		DoorControl("Close");
 		// if (other.gameObject.tag == "Player") {
 		// 		DoorControl ("Close");		
 		// }
@@ -54,22 +56,22 @@ public class MazeDoorSlideLocked : MonoBehaviour {
 	}
 
 
-	void Update() {
-		if(!doorLocked && doorOpen){
-			Debug.Log("update open");
-			DoorControl ("Open");
-		}
-		else{
-			Debug.Log("update close");
-			DoorControl("Close");
-		}
+//	void Update() {
+//		if(!doorLocked && doorOpen){
+//			Debug.Log("update open");
+//			DoorControl ("Open");
+//		}
+//		else{
+//			Debug.Log("update close");
+//			DoorControl("Close");
+//		}
 
 		// if (!doorOpen){
 		// 	if (other.gameObject.tag == "Player") {
 		// 		DoorControl ("Close");
 		// 	}
 		// }
-	}
+//	}
 
 	void OnGUI() 	{
 		if(doorLocked)
@@ -84,73 +86,73 @@ public class MazeDoorSlideLocked : MonoBehaviour {
 				GUI.Box(new Rect(100, 175, 200, 25), input);
 				
 				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Keypad1.ToString()))){
-					message = "Authorized personnel only. You need a " + neededType + " key of type " + neededType ;
+					message = "Authorized personnel only.";
 					input = input + "1";
 				}
 
 				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Keypad2.ToString()))){
-					message = "Authorized personnel only. You need a " + neededType + " key of type " + neededType ;
+					message = "Authorized personnel only.";
 					input = input + "2";
 				}
 
 				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Keypad3.ToString())))
 				{
-					message = "Authorized personnel only. You need a " + neededType + " key of type " + neededType ;
+					message = "Authorized personnel only.";
 					input = input + "3";
 				}
 
 				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Keypad4.ToString())))
 				{
-					message = "Authorized personnel only. You need a " + neededType + " key of type " + neededType ;
+					message = "Authorized personnel only.";
 					input = input + "4";
 				}
 
 				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Keypad5.ToString())))
 				{
-					message = "Authorized personnel only. You need a " + neededType + " key of type " + neededType ;
+					message = "Authorized personnel only.";
 					input = input + "5";
 				}
 
 				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Keypad6.ToString())))
 				{
-					message = "Authorized personnel only. You need a " + neededType + " key of type " + neededType ;
+					message = "Authorized personnel only.";
 					input = input + "6";
 				}
 
 				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Keypad7.ToString())))
 				{
-					message = "Authorized personnel only. You need a " + neededType + " key of type " + neededType ;
+					message = "Authorized personnel only.";
 					input = input + "7";
 				}
 
 				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Keypad8.ToString())))
 				{
-					message = "Authorized personnel only. You need a " + neededType + " key of type " + neededType ;
+					message = "Authorized personnel only.";
 					input = input + "8";
 				}
 
 				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Keypad9.ToString())))
 				{
-					message = "Authorized personnel only. You need a " + neededType + " key of type " + neededType ;
+					message = "Authorized personnel only.";
 					input = input + "9";
 				}
 
 				if(Input.GetKeyDown(KeyCode.Keypad0))
 				{
-					message = "Authorized personnel only. You need a " + neededType + " key of type " + neededType ;
+					message = "Authorized personnel only.";
 					input = input + "0";
 				}
 
 				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Backspace.ToString())))
 				{
-					message = "Authorized personnel only. You need a " + neededType + " key of type " + neededType ;
+					message = "Authorized personnel only.";
 					input = input.Substring(0, input.Length - 1);
 				}
 			}
 			if (input.Length == 6){
 				if(input == curPassword){
 					doorLocked = false;
-					doorOpen = true;
+					DoorControl ("Open");
 				} else {
 					message = "Wrong code, please try again.";
 					input = "";
