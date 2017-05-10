@@ -21,10 +21,16 @@ public class GameManager : MonoBehaviour {
 
 	public static bool enemyCollision = false;
 
-
+	public AudioClip slow;
+	public AudioClip fast;
+	public AudioClip intro;
+	public AudioClip gameover;
+	public AudioClip winning;
+	
 
 	// Use this for initialization
 	void Start () {
+		AudioSource.PlayClipAtPoint(intro, transform.position);
 		time = 200.0f;
 		alive = true;
 		UpdateUI();
@@ -48,7 +54,11 @@ public class GameManager : MonoBehaviour {
 
 		int intLast = ReadLine();
 		if (intLast > heartBeat){
+			AudioSource.PlayClipAtPoint(fast, transform.position);
 			time -= 10;
+		}
+		else{
+			AudioSource.PlayClipAtPoint(slow, transform.position);
 		}
 		heartBeat = intLast;
 		float last = (float)intLast;
@@ -71,6 +81,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void GameOver() {
+		AudioSource.PlayClipAtPoint(gameover, transform.position);
 		timeLeft.text = "Game Over";
 		Time.timeScale = 0f;
 	}
