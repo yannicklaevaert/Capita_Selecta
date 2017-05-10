@@ -14,6 +14,7 @@ public class MazeDoorSlideLocked : MonoBehaviour {
 	Collider other;
 	public string message = "Authorized personnel only.";
 	public string key = "You need a " + neededColor + " key of type " + neededType;
+	public AudioClip slide;
 
 	void Start()
 	{
@@ -48,6 +49,7 @@ public class MazeDoorSlideLocked : MonoBehaviour {
 
 	void DoorControl(string direction)
 	{
+		AudioSource.PlayClipAtPoint(slide, transform.position);
 		animator.SetTrigger(direction);
 	}
 
