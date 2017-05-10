@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour {
 
 	public int heartBeat;
 
+	public static bool enemyCollision = false;
+
 
 
 	// Use this for initialization
@@ -52,7 +54,7 @@ public class GameManager : MonoBehaviour {
 		float last = (float)intLast;
 		float factor = last/60;
 		time -= factor * Time.deltaTime;
-	    if(time < 0){
+	    if((time < 0) || enemyCollision){
 	        alive = false;
 	        GameOver();
 	    }
