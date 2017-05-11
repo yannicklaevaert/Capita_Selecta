@@ -23,7 +23,7 @@ public class MazeDoorSlideLocked : MonoBehaviour {
 	}
 		
 	void OnTriggerEnter (Collider other) {
-		this.other = other;
+		//this.other = other;
 		onTrigger = true;
 		if (!doorLocked){
 			Debug.Log("open door");
