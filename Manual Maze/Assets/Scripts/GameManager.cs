@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void GameOver() {
-		AudioSource.PlayClipAtPoint(gameover, transform.position);
+		//AudioSource.PlayClipAtPoint(gameover, transform.position);
 		timeLeft.text = "Game Over";
 		Time.timeScale = 0f;
 	}

@@ -35,16 +35,6 @@ public class Lasers : MonoBehaviour {
 		}*/
 	}
 
-	void Update(){
-		if (rotating){
-			Debug.Log("rotating");
-			//this.setActive(false);
-		} else if (!rotating){
-			//GetComponent<Renderer>().enabled = true;
-			Debug.Log("not rotating");
-		}
-	}
-
 	void OnTriggerExit (Collider other) {
 		/*Debug.Log("OnTriggerExit");
 		if ((other.gameObject.tag == "Wall") && change){
