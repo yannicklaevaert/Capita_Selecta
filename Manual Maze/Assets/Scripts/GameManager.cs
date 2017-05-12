@@ -11,11 +11,11 @@ public class GameManager : MonoBehaviour {
 
 	public Text beatsPerMinute;
 
-	public float time;
+	public static float time;
 
 	public GameObject escape;
 
-	public bool alive;
+	public static bool alive;
 
 	public int heartBeat;
 
@@ -65,8 +65,8 @@ public class GameManager : MonoBehaviour {
 		float factor = last/60;
 		time -= factor * Time.deltaTime;
 	    if((time < 0) || enemyCollision){
-	        alive = false;
-	        GameOver();
+	    	Cursor.lockState = CursorLockMode.None;
+	    	Application.LoadLevel("GameOver");
 	    }
 	    else{
 	    	UpdateUI();
@@ -78,13 +78,5 @@ public class GameManager : MonoBehaviour {
 	public void UpdateUI() {
 		timeLeft.text = "Time: " + Mathf.Round(time);
 		beatsPerMinute.text = "BPM: " + heartBeat;
-	}
-
-	public void GameOver() {
-		//AudioSource.PlayClipAtPoint(gameover, transform.position);
-		timeLeft.text = "Game Over";
-		Time.timeScale = 0f;
-		Application.LoadLevel("GameOver");
-
 	}
 }
