@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class MazeDoorSlideLocked : MonoBehaviour {
@@ -8,10 +8,8 @@ public class MazeDoorSlideLocked : MonoBehaviour {
 	public static string neededColor = "green";
 	public static string neededType = "A";
 	public string input;
-	bool onTrigger;
 	bool doorLocked;
-	bool doorOpen;
-	Collider other;
+	public bool onTrigger;
 	public string message = "Authorized personnel only.";
 	public string key = "You need a " + neededColor + " key of type " + neededType;
 	public AudioClip slide;
@@ -21,33 +19,16 @@ public class MazeDoorSlideLocked : MonoBehaviour {
 		doorLocked = true;
 		animator = GetComponent<Animator>();
 	}
-		
+
 	void OnTriggerEnter (Collider other) {
-		//this.other = other;
 		onTrigger = true;
-		if (!doorLocked){
-			Debug.Log("open door");
-			doorOpen = true;
-			DoorControl ("Open");
-		}		
 	}
 
 	void OnTriggerExit (Collider other) {
-		/*if (other.gameObject.tag == "Player") {
-			hinge.localRotation = Quaternion.identity;
-		}*/
-		this.other = other;
 		onTrigger = false;
 		input = "";
-		doorOpen = false;
-		DoorControl("Close");
-		// if (other.gameObject.tag == "Player") {
-		// 		DoorControl ("Close");		
-		// }
-		
-		
 	}
-
+		
 
 	void DoorControl(string direction)
 	{
@@ -56,28 +37,10 @@ public class MazeDoorSlideLocked : MonoBehaviour {
 	}
 
 
-//	void Update() {
-//		if(!doorLocked && doorOpen){
-//			Debug.Log("update open");
-//			DoorControl ("Open");
-//		}
-//		else{
-//			Debug.Log("update close");
-//			DoorControl("Close");
-//		}
-
-		// if (!doorOpen){
-		// 	if (other.gameObject.tag == "Player") {
-		// 		DoorControl ("Close");
-		// 	}
-		// }
-//	}
-
 	void OnGUI() 	{
 		if(doorLocked)
 		{
-			if(onTrigger)
-			{
+				if (onTrigger){
 
 				//GUI.Box(new Rect(0, 0, 220, 330), "");
 				GUI.Box(new Rect(100, 100, 200, 25), message);
