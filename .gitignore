@@ -3,6 +3,8 @@
 
 /Manual Maze/Library/
 Manual Maze/Library/
+Manual Maze/Temp/
+/Manual Maze/Temp/
 
 /[Ll]ibrary/
 /[Tt]emp/
@@ -40,3 +42,5 @@ sysinfo.txt
 *.unitypackage
 
 Manual Maze/Temp/__Backupscenes/
+
+
