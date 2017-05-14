@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour {
 
 	public static bool alive;
 
-	public int heartBeat;
+	public float heartBeat;
 
 	public static bool enemyCollision = false;
 
@@ -27,11 +27,13 @@ public class GameManager : MonoBehaviour {
 	public AudioClip gameover;
 	public AudioClip winning;
 	
+	public float runningTime;
 
 	// Use this for initialization
 	void Start () {
 		AudioSource.PlayClipAtPoint(intro, transform.position);
 		time = 200.0f;
+		runningTime = 0.0f;
 		alive = true;
 		UpdateUI();
 		Update();
@@ -45,7 +47,12 @@ public class GameManager : MonoBehaviour {
 		string input = reader.ReadLine();
 		reader.Close();
 		int last = int.Parse(input);
-		return last;
+		if (last == 0){
+			return 100;
+		}
+		else{
+			return last;
+		}	
   }
 
 
@@ -53,16 +60,17 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 
 		int intLast = ReadLine();
-		if (intLast > heartBeat){
+		float floatLast = (float) intLast;
+		UpdateRunningTime();
+		float newHeartBeat = floatLast + runningTime;
+		if (newHeartBeat > heartBeat){
 			AudioSource.PlayClipAtPoint(fast, transform.position);
-			time -= 10;
 		}
 		else{
 			AudioSource.PlayClipAtPoint(slow, transform.position);
 		}
-		heartBeat = intLast;
-		float last = (float)intLast;
-		float factor = last/60;
+		heartBeat = newHeartBeat;
+		float factor = heartBeat/60;
 		time -= factor * Time.deltaTime;
 	    if((time < 0) || enemyCollision){
 	    	Cursor.lockState = CursorLockMode.None;
@@ -77,6 +85,17 @@ public class GameManager : MonoBehaviour {
 
 	public void UpdateUI() {
 		timeLeft.text = "Time: " + Mathf.Round(time);
-		beatsPerMinute.text = "BPM: " + heartBeat;
+		beatsPerMinute.text = "BPM: " + Mathf.Round(heartBeat);
+	}
+
+	public void UpdateRunningTime(){
+		float moveX = Input.GetAxis ("Horizontal");
+		float moveZ = Input.GetAxis ("Vertical");
+		if (moveX ==0 && moveZ == 0){
+			runningTime -= 0.01f;
+		}
+		else{
+			runningTime += 0.02f;
+		}
 	}
 }
