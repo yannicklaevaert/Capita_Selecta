@@ -104,12 +104,6 @@ public class MazeDoorSlideLocked : MonoBehaviour {
 					input = input + "9";
 				}
 
-				if(Input.GetKeyDown(KeyCode.Keypad0))
-				{
-					message = "Authorized personnel only.";
-					input = input + "0";
-				}
-
 				if(Event.current.Equals(Event.KeyboardEvent(KeyCode.Backspace.ToString())))
 				{
 					message = "Authorized personnel only.";
