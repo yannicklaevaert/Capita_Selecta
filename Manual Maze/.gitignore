@@ -1,8 +1,11 @@
 ./idea
 *.xml
 
-/Manual Maze/Library/
-Manual Maze/Library/
+/Library/
+/Temp/
+
+Library/
+Temp/
 
 /[Ll]ibrary/
 /[Tt]emp/
