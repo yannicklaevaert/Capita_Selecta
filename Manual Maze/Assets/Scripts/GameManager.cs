@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour {
 	public float runningTime;
 
 	// Use this for initialization
-	void Start () {
+	void Start () { 
 		AudioSource.PlayClipAtPoint(intro, transform.position);
 		time = 200.0f;
 		runningTime = 0.0f;
@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour {
 		string input = reader.ReadLine();
 		reader.Close();
 		int last = int.Parse(input);
+		Debug.Log(last);
 		if (last == 0){
 			return 100;
 		}
@@ -59,16 +60,25 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+
 		int intLast = ReadLine();
 		float floatLast = (float) intLast;
 		UpdateRunningTime();
 		float newHeartBeat = floatLast + runningTime;
-		if (newHeartBeat > heartBeat){
-			AudioSource.PlayClipAtPoint(fast, transform.position);
-		}
-		else{
-			AudioSource.PlayClipAtPoint(slow, transform.position);
-		}
+		// if (newHeartBeat > heartBeat){
+		// 	if (!GetComponent<AudioSource>().isPlaying){
+		// 		audio.clip = fast;
+		// 		audio.Play();
+		// 	}
+			
+		// }
+		// else{
+		// 	if (!audio.isPlaying){
+		// 		audio.clip = slow;
+		// 		audio.Play();
+		// 	}
+			
+		// }
 		heartBeat = newHeartBeat;
 		float factor = heartBeat/60;
 		time -= factor * Time.deltaTime;
