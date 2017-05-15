@@ -47,7 +47,6 @@ public class GameManager : MonoBehaviour {
 		string input = reader.ReadLine();
 		reader.Close();
 		int last = int.Parse(input);
-		Debug.Log(last);
 		if (last == 0){
 			return 100;
 		}
@@ -83,7 +82,6 @@ public class GameManager : MonoBehaviour {
 		float factor = heartBeat/60;
 		time -= factor * Time.deltaTime;
 	    if((time < 0) || enemyCollision){
-	    	Cursor.lockState = CursorLockMode.None;
 	    	Application.LoadLevel("GameOver");
 	    }
 	    else{

@@ -6,10 +6,6 @@ public class PlayerMovement : MonoBehaviour {
 
 	public float moveSpeed = 1.0f; 
 
-	void Start() {
-		Cursor.lockState = CursorLockMode.Locked;
-	}
-
 	// Update is called once per frame
 	void FixedUpdate () {
 		float moveX = Input.GetAxis ("Horizontal");
@@ -24,7 +20,6 @@ public class PlayerMovement : MonoBehaviour {
 		transform.Translate(moveX, 0, moveZ);
 
 		if (Input.GetKeyDown ("escape")) {
-			Cursor.lockState = CursorLockMode.None;
 		}
 	}
 }
