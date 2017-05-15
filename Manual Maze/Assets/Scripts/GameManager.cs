@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () { 
 		AudioSource.PlayClipAtPoint(intro, transform.position);
-		time = 200000.0f;
+		time = 1500.0f;
 		runningTime = 0.0f;
 		alive = true;
 		UpdateUI();

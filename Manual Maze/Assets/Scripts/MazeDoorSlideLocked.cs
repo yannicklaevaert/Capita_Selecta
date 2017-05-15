@@ -22,11 +22,17 @@ public class MazeDoorSlideLocked : MonoBehaviour {
 
 	void OnTriggerEnter (Collider other) {
 		onTrigger = true;
+		if (!doorLocked){
+			DoorControl("Open");
+		}
 	}
 
 	void OnTriggerExit (Collider other) {
 		onTrigger = false;
 		input = "";
+		if (!doorLocked){
+			DoorControl("Close");
+		}
 	}
 		
 
